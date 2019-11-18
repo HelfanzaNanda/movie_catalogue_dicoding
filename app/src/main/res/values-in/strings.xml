@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movies">Film</string>
+    <string name="tv_show">Acara Tv</string>
+    <string name="ubah_bahasa">Ubah Bahasa</string>
+    <string name="favorite">Kesukaan</string>
+    <string name="movie_fav">Film Kesukaan</string>
+    <string name="tv_fav">Acara TV Kesukaan</string>
+    <string name="search_movies">Cari Judul Film</string>
+    <string name="add_fav">Tambah Kesukaan</string>
+    <string name="remove_fav">Hapus Kesukaan</string>
+    <string name="search_tv">Cari Judul Acara Tv</string>
+</resources>

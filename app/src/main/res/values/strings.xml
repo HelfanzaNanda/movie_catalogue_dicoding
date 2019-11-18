@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TheMovieDbApiWithViewModel</string>
+    <string name="movies">Movies</string>
+    <string name="tv_show">Tv Show</string>
+    <string name="ubah_bahasa">Change Language</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favorite">Favorite</string>
+    <string name="movie_fav">Movie Favorite</string>
+    <string name="tv_fav">Tv Favorite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_movies">Search Title Movie</string>
+    <string name="add_fav">Add Favorite</string>
+    <string name="remove_fav">Remove Favorite</string>
+    <string name="search_tv">Search Title Tv Show</string>
+    <string name="add_widget">Add widget</string>
+    <string name="appwidget_text">STAR WARS BANNER</string>
+    <string name="empty_text">NO DATA</string>
+</resources>

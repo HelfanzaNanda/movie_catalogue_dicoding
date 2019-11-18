@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DetailMovieActivity">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/iv_item_movies_poster_detail"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/favorite_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:paddingBottom="10dp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/iv_item_movies_poster_detail"
+        android:textSize="20sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="AAAAA"
+        android:id="@+id/tv_item_movies_title_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_margin="8sp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_movies_title_detail"
+        android:text="AAAAA"
+        android:id="@+id/tv_item_movies_desc_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
