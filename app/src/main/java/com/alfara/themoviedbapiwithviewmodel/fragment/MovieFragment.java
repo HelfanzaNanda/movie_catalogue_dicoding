@@ -1,5 +1,6 @@
 package com.alfara.themoviedbapiwithviewmodel.fragment;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -17,12 +18,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
@@ -50,6 +53,9 @@ public class MovieFragment extends Fragment implements OnQueryTextListener {
     private ProgressBar progressBar;
     private ViewModelMovie viewModelMovie;
     private AdapterMovie adapter;
+    private SearchView searchView;
+    private IBinder binder;
+    private InputMethodManager inputManager;
 
     //private static final String EXTRA_STATE = "EXTRA_STATE";
 
@@ -59,6 +65,8 @@ public class MovieFragment extends Fragment implements OnQueryTextListener {
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
         progressBar = view.findViewById(R.id.pgBarMovie);
         recycler = view.findViewById(R.id.rv_movies);
+        binder = view.getWindowToken();
+        inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         load();
         return view;
     }
@@ -96,20 +104,22 @@ public class MovieFragment extends Fragment implements OnQueryTextListener {
         } else {
             recycler.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         }
-
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
+    public boolean onQueryTextSubmit(String query) { return false; }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        searchMovie(newText);
+        if (!newText.isEmpty()){
+            searchMovie(newText);
+        } else {
+            hideKeyboard();
+            getMovie();
+        }
         return true;
     }
 
@@ -127,7 +137,6 @@ public class MovieFragment extends Fragment implements OnQueryTextListener {
                     recycler.setAdapter(new AdapterMovie(getActivity(), movies));
 
                 }else {
-                    //Toast.makeText(getActivity(), "request not success "+response.message(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -154,18 +163,27 @@ public class MovieFragment extends Fragment implements OnQueryTextListener {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_search, menu);
         final MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView = (SearchView) MenuItemCompat.getActionView(item);
         searchView.setQueryHint(getString(R.string.search_movies));
         searchView.setIconified(true);
         searchView.setOnQueryTextListener(this);
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                return false;
+            }
+        });
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getMovie();
     }
 
+    private void hideKeyboard(){
+        inputManager.hideSoftInputFromWindow(binder,
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.alfara.themoviedbapiwithviewmodel.activity.NotificationSettingActivity;
 import com.alfara.themoviedbapiwithviewmodel.fragment.FavFragment;
 import com.alfara.themoviedbapiwithviewmodel.fragment.MovieFragment;
 import com.alfara.themoviedbapiwithviewmodel.fragment.TvShowFragment;
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_movies:
                     //toast("movies clicked");
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container_layout, new MovieFragment(), getString(R.string.movies)).commit();
+                            .replace(R.id.container_layout, new MovieFragment(), getString(R.string.movies))
+                            .commit();
                     break;
                 case R.id.navigation_tvshow:
                     //toast("tvshow clicked");
@@ -80,9 +82,19 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_ubah_bahasa) {
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(mIntent);
+//        if (item.getItemId() == R.id.action_ubah_bahasa) {
+//            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+//            startActivity(mIntent);
+//        }
+        switch (item.getItemId()) {
+            case R.id.action_ubah_bahasa:
+                Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(mIntent);
+                break;
+            case R.id.action_ubah_notif:
+                Intent intent = new Intent(MainActivity.this, NotificationSettingActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

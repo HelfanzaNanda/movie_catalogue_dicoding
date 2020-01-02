@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 import android.widget.Toast;
@@ -20,37 +22,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
-    private final Context context;
+    private Context context;
     private Cursor cursor;
     int mAppWidgetId;
 
     public StackRemoteViewsFactory(Context context, Intent intent) {
         this.context = context;
-        mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
     private Movie getFavorite(int position){
         if (!cursor.moveToPosition(position)){
-            throw new IllegalStateException("Position Invalid!");
+            throw new IllegalStateException("position Invalid!");
         }
 
-        return new Movie(cursor.getString(cursor.getColumnIndexOrThrow(FavoriteContract.FavoriteMovieEntry.COLUMN_ID)),
+        return new Movie(
+                cursor.getInt(cursor.getColumnIndexOrThrow(FavoriteContract.FavoriteMovieEntry.COLUMN_ID)),
+                cursor.getString(cursor.getColumnIndexOrThrow(FavoriteContract.FavoriteMovieEntry.COLUMN_TITLE)),
                 cursor.getString(cursor.getColumnIndexOrThrow(FavoriteContract.FavoriteMovieEntry.COLUMN_POSTER_PATH)),
-                cursor.getString(cursor.getColumnIndexOrThrow(FavoriteContract.FavoriteMovieEntry.COLUMN_TITLE))
+                cursor.getString(cursor.getColumnIndexOrThrow(FavoriteContract.FavoriteMovieEntry.COLUMN_PLOT_SYNOPSIS))
         );
     }
-
     @Override
-    public void onCreate() {
-        cursor = context.getContentResolver().query(FavoriteContract.FavoriteMovieEntry.CONTENT_URI_MOVIE,
-                null,
-                null,
-                null,
-                null
-        );
-    }
+    public void onCreate() { }
 
     @Override
     public void onDataSetChanged() {
@@ -61,8 +60,8 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
         cursor = context.getContentResolver().query(FavoriteContract.FavoriteMovieEntry.CONTENT_URI_MOVIE,
                 null, null, null, null);
+        Log.d("Cursor ", String.valueOf(cursor));
         Binder.restoreCallingIdentity(identityToken);
-        //cursor.close();
     }
 
     @Override
@@ -74,23 +73,30 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public int getCount() {
-        return cursor.getCount();
+        return cursor == null ? 0 : cursor.getCount();
     }
 
     @Override
     public RemoteViews getViewAt(int position) {
-        Movie movie = getFavorite(position);
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_item);
+        Movie movie = getFavorite(position);
+        RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
+
+        Log.d("poster widget ", movie.getPosterPath());
+        Log.d("poster title", movie.getTitle());
+
         Bitmap bitmap = null;
         try {
             bitmap = Glide.with(context)
-                    .asBitmap().load("https://image.tmdb.org/t/p/w500"+movie.getPosterPath())
-                    .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL).get();
-            views.setImageViewBitmap(R.id.imageView, bitmap);
-            views.setTextViewText(R.id.widget_title, movie.getTitle());
+                    .asBitmap()
+                    .load("https://image.tmdb.org/t/p/w500"+movie.getPosterPath())
+                    .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                    .get();
+            rv.setImageViewBitmap(R.id.widget_image, bitmap);
+            rv.setTextViewText(R.id.widget_title, movie.getTitle());
         }catch (InterruptedException | ExecutionException e){
-            Toast.makeText(context, "Failed to load Widget"+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.d("Failed to load widget", e.getMessage());
+            Toast.makeText(context, "Failed to load Widget "+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         Bundle extras = new Bundle();
@@ -98,8 +104,8 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
 
-        views.setOnClickFillInIntent(R.id.imageView, fillInIntent);
-        return views;
+        rv.setOnClickFillInIntent(R.id.widget_image, fillInIntent);
+        return rv;
     }
 
     @Override
@@ -121,4 +127,5 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
     public boolean hasStableIds() {
         return false;
     }
+
 }

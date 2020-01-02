@@ -50,4 +50,27 @@ public class MovieRepository {
 
         return mutableLiveData;
     }
+
+    /*public MutableLiveData<ArrayList<Movie>> getRelease(String date, String today){
+        final Api api = RetrofitInstance.getApiService();
+        Call<ResponseMovie> call = api.getReleasedMovies(BuildConfig.API_KEY, date, today);
+        call.enqueue(new Callback<ResponseMovie>() {
+            @Override
+            public void onResponse(Call<ResponseMovie> call, Response<ResponseMovie> response) {
+                ResponseMovie movie = response.body();
+                if (movie != null && movie.getResults() != null){
+                    movies = movie.getResults();
+                    mutableLiveData.setValue(movies);
+                }else {
+                    Toast.makeText(application.getApplicationContext(), "Req not success" +response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseMovie> call, Throwable t) {
+                Toast.makeText(application.getApplicationContext(), "Request onFailure"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }*/
 }

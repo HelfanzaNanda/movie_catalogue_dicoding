@@ -10,4 +10,13 @@
     <string name="add_fav">Tambah Kesukaan</string>
     <string name="remove_fav">Hapus Kesukaan</string>
     <string name="search_tv">Cari Judul Acara Tv</string>
+    <string name="appwidget_text">Film Kesukaan</string>
+    <string name="empty_text">Tidak Ada Data</string>
+    <string name="daily_reminder_title">Pengingat Harian</string>
+    <string name="daily_reminder_desc">Pengingat kembali ke aplikasi</string>
+    <string name="release_reminder_desc">Notifikasi mengenai rilis hari ini</string>
+    <string name="notification_setting_title">Pengaturan Notifikasi</string>
+    <string name="daily_message_reminder">Cek film yang lagi trending hari ini!</string>
+    <string name="release_reminder_message">telah dirilis hari ini</string>
+    <string name="setting_notification">pengaturan notifikasi</string>
 </resources>

@@ -4,6 +4,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         buildConfigField("String", "API_KEY", '"9f8808cfea557f655e533ea784664924"')
+        buildConfigField("String", "MY_SHARED_PREFERENCES", '"reminder"')
         applicationId "com.alfara.themoviedbapiwithviewmodel"
         minSdkVersion 15
         targetSdkVersion 29

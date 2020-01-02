@@ -32,10 +32,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        return fragments.get(position);
-    }
-
+    public Fragment getItem(int position) { return fragments.get(position); }
 
     @Nullable
     @Override

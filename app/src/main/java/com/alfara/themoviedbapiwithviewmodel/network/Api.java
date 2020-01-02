@@ -24,4 +24,10 @@ public interface Api {
     @GET("search/tv")
     Call<ResponseTv> searchTv(@Query("api_key") String apikey, @Query("query") String query);
 
+    @GET("discover/movie")
+    Call<ResponseMovie> getReleasedMovies(
+            @Query("api_key") String apikey,
+            @Query("primary_release_date.gte") String date,
+            @Query("primary_release_date.lte") String today);
+
 }

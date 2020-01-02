@@ -1,9 +1,15 @@
 package com.alfara.themoviedbapiwithviewmodel.entity;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+
+import static com.alfara.themoviedbapiwithviewmodel.helper.FavoriteContract.FavoriteMovieEntry.COLUMN_ID;
+import static com.alfara.themoviedbapiwithviewmodel.helper.FavoriteContract.FavoriteMovieEntry.COLUMN_PLOT_SYNOPSIS;
+import static com.alfara.themoviedbapiwithviewmodel.helper.FavoriteContract.FavoriteMovieEntry.COLUMN_POSTER_PATH;
+import static com.alfara.themoviedbapiwithviewmodel.helper.FavoriteContract.FavoriteMovieEntry.COLUMN_TITLE;
 
 public class Movie implements Parcelable {
 
@@ -30,8 +36,15 @@ public class Movie implements Parcelable {
 
     }
 
-    public Movie(String string, String string1, String string2) {
+    public Movie(long movieid, String movietitle, String poster, String overview) {
+
     }
+
+/*    public Movie(Cursor cursor) {
+        this.id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+        this.title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+        this.posterPath = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_POSTER_PATH));
+    }*/
 
     public String getOverview() {
         return overview;

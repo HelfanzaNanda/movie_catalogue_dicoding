@@ -5,4 +5,9 @@
         android:id="@+id/action_ubah_bahasa"
         android:title="@string/ubah_bahasa"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_ubah_notif"
+        android:title="@string/setting_notification"
+        app:showAsAction="never"/>
 </menu>

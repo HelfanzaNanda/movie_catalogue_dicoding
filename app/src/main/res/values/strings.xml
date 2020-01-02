@@ -16,6 +16,14 @@
     <string name="remove_fav">Remove Favorite</string>
     <string name="search_tv">Search Title Tv Show</string>
     <string name="add_widget">Add widget</string>
-    <string name="appwidget_text">STAR WARS BANNER</string>
-    <string name="empty_text">NO DATA</string>
+    <string name="appwidget_text">Favorite Movie</string>
+    <string name="empty_text">No Data</string>
+    <string name="release_reminder_title">Release Reminder</string>
+    <string name="daily_reminder_title">Daily Reminder</string>
+    <string name="daily_reminder_desc">Reminder for return to app</string>
+    <string name="release_reminder_desc">Reminder showing the movie that released today</string>
+    <string name="notification_setting_title">Notification Setting</string>
+    <string name="daily_message_reminder">Let\'s see what movies are popular today!</string>
+    <string name="release_reminder_message">has been released today!</string>
+    <string name="setting_notification">setting notifikasi</string>
 </resources>
