@@ -143,7 +143,7 @@ public class TvFavTab extends Fragment implements LoadTvFavCallback{
             adapter.setTvs(tvs1);
         } else {
             adapter.setTvs(new ArrayList<Tv>());
-            showSnackbarMessage("Tidak ada data saat ini");
+            //showSnackbarMessage("Tidak ada data saat ini");
         }
     }
 

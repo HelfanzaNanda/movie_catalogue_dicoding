@@ -30,25 +30,21 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_movies:
-                    //toast("movies clicked");
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container_layout, new MovieFragment(), getString(R.string.movies))
                             .commit();
                     break;
                 case R.id.navigation_tvshow:
-                    //toast("tvshow clicked");
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container_layout, new TvShowFragment(), getString(R.string.tv_show)).commit();
                     break;
 
                 case R.id.navigation_fav:
-                    //toast("fav clicked");
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container_layout, new FavFragment(), getString(R.string.favorite)).commit();
                     break;
 
                 default:
-                     //toast("movies clicked");
                      getSupportFragmentManager().beginTransaction()
                              .replace(R.id.container_layout, new MovieFragment(), getString(R.string.movies)).commit();
 
@@ -56,12 +52,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
-
-
-
-    /*private void toast(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +72,6 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.action_ubah_bahasa) {
-//            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-//            startActivity(mIntent);
-//        }
         switch (item.getItemId()) {
             case R.id.action_ubah_bahasa:
                 Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);

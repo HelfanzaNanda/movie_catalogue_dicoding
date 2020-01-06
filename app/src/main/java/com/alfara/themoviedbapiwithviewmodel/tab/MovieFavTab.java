@@ -44,7 +44,6 @@ public class MovieFavTab extends Fragment implements LoadMovieFavCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_movie_fav_tab, container, false);
 
         progressBar = view.findViewById(R.id.pg_fav_Movie);
@@ -127,7 +126,6 @@ public class MovieFavTab extends Fragment implements LoadMovieFavCallback {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-//            new LoadMovieAsync(context, (LoadMovieFavCallback) context).execute();
             new LoadMovieAsync(context, callback).execute();
 
         }
@@ -150,7 +148,7 @@ public class MovieFavTab extends Fragment implements LoadMovieFavCallback {
             adapter.setMovies(movies1);
         } else {
             adapter.setMovies(new ArrayList<Movie>());
-            showSnackbarMessage("Tidak ada data saat ini");
+            //showSnackbarMessage("Tidak ada data saat ini");
         }
     }
 

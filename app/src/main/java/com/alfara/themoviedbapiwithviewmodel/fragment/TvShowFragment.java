@@ -69,7 +69,6 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
         recycler.setAdapter(adapter);
 
         viewModelTv = ViewModelProviders.of(getActivity()).get(ViewModelTv.class);
-        //viewModelTv = new ViewModelProvider(getActivity(), new ViewModelProvider.NewInstanceFactory()).get(ViewModelTv.class);
         getTv();
     }
 
@@ -108,7 +107,7 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
                     recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recycler.setAdapter(new AdapterTv(getActivity(), tvs));
                 }else {
-                    Toast.makeText(getActivity(), "Request not Success "+response.message(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Request not Success "+response.message(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -116,7 +115,7 @@ public class TvShowFragment extends Fragment implements SearchView.OnQueryTextLi
             @Override
             public void onFailure(Call<ResponseTv> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Request onFalure "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Request onFalure "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

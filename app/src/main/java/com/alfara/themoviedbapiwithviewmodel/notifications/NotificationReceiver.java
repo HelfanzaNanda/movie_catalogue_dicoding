@@ -63,8 +63,8 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     private Calendar getReminderTime(String type){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, type.equals(TYPE_DAILY) ? 14 : 14);
-        calendar.set(Calendar.MINUTE, 24);
+        calendar.set(Calendar.HOUR_OF_DAY, type.equals(TYPE_DAILY) ? 7 : 8);
+        calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 
         if (calendar.before(Calendar.getInstance())){

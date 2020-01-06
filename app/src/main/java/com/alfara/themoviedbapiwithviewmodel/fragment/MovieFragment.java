@@ -143,7 +143,7 @@ public class MovieFragment extends Fragment implements OnQueryTextListener {
 
             @Override
             public void onFailure(Call<ResponseMovie> call, Throwable t) {
-                Toast.makeText(getActivity(), "Request onFailure "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Request onFailure "+t.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
             }
         });
